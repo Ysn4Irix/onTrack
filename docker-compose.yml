@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  # MySQL database service
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: ontrack
+      MYSQL_USER: user
+      MYSQL_PASSWORD: passworduser
+    ports:
+      - '3306:3306'
+
+  # Next.js app service
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mysql
+    environment:
+      DATABASE_HOST: mysql
+      DATABASE_USER: user
+      DATABASE_PASSWORD: passworduser
+      DATABASE_NAME: ontrack
