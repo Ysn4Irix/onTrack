@@ -24,6 +24,7 @@ COPY package*.json ./
 RUN npm install --location=global pnpm
 RUN pnpm install
 COPY . .
+RUN pnpx prisma migrate deploy
 RUN pnpx prisma generate
 RUN pnpm run build
 EXPOSE 3000
