@@ -99,6 +99,11 @@ npm start
 docker-compose up -d
 ```
 
+### TODO
+
+- [ ] Adding ability to add answers to issues
+- [ ] assigning issues to users (admin only)
+
 <br>
 
 ![🙌](https://raw.githubusercontent.com/ahmadawais/stuff/master/images/git/connect.png)
