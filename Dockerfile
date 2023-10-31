@@ -17,16 +17,16 @@ ENV NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=${NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL}
 ARG NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=${NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL}
 ENV NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=${NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL}
 
-WORKDIR /app
+WORKDIR /
 
 COPY package.json pnpm-lock.yaml ./
 
 RUN npm install --location=global pnpm
 RUN pnpm install
 COPY . .
-RUN pnpx prisma migrate deploy
+RUN pnpx prisma migrate prod --name init
 RUN pnpx prisma generate
 RUN pnpm run build
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["pnpm", "start"]
