@@ -24,7 +24,7 @@ COPY package.json pnpm-lock.yaml ./
 RUN npm install --location=global pnpm
 RUN pnpm install
 COPY . .
-RUN pnpx prisma migrate prod --name init
+RUN pnpx prisma migrate reset
 RUN pnpx prisma generate
 RUN pnpm run build
 EXPOSE 3000
