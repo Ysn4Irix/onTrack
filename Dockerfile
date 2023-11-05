@@ -22,7 +22,7 @@ WORKDIR /app
 COPY . .
 RUN npm install --location=global pnpm
 RUN pnpm install
-RUN pnpm dlx prisma db push
+
 RUN pnpm run build
 EXPOSE 3000
 
