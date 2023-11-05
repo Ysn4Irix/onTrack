@@ -19,12 +19,10 @@ ENV NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=${NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL}
 
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml ./
-
+COPY . .
 RUN npm install --location=global pnpm
 RUN pnpm install
-COPY . .
-RUN npx prisma db push
+RUN pnpm dlx prisma db push
 RUN pnpm run build
 EXPOSE 3000
 
