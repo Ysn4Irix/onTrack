@@ -1,7 +1,7 @@
 {
   "name": "ontrack",
   "description": "A full stack issue tracker built with Next.js, Prisma, and TailwindCSS",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": true,
   "author": {
     "name": "Ysn4Irix",
