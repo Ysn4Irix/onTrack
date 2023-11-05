@@ -27,7 +27,7 @@ const about = () => {
           </div>
         </CardContent>
         <CardFooter className="flex justify-end">
-          <a href="https://gihtub.com/Ysn4Irix/onTrack" target="_blank">
+          <a href="https://github.com/Ysn4Irix/onTrack" target="_blank">
             <Button className="h-10 pr-5">
               <StarFilledIcon className="h-4 w-4 mr-2" /> Star on GitHub
             </Button>
