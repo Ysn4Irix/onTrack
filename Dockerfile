@@ -20,7 +20,7 @@ ENV NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=${NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL}
 WORKDIR /app
 
 COPY . .
-RUN npm install --location=global bun
+RUN npm install -g bun
 RUN bun install
 
 RUN bun run build
