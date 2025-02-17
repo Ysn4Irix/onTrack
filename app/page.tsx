@@ -5,7 +5,6 @@ import { Overview } from './issues/components/Overview'
 import { RecentIssues } from './issues/components/RecentIssues'
 import prisma from '@/prisma/client'
 import { Prisma } from '@prisma/client'
-import { JsonObject } from '@prisma/client/runtime/library'
 
 export const metadata: Metadata = {
   title: 'Dashboard',
@@ -14,42 +13,16 @@ export const metadata: Metadata = {
 
 export default async function Dashboard() {
   const issueCount = await prisma.issue.count()
-  const lastMonthCount = await prisma.issue.count({
-    where: {
-      createdAt: {
-        gte: new Date(new Date().setMonth(new Date().getMonth() - 1)),
-      },
-    },
-  })
-  const lastMonthOpenIssueCount = await prisma.issue.count({
-    where: {
-      status: 'OPEN',
-      createdAt: {
-        gte: new Date(new Date().setMonth(new Date().getMonth() - 1)),
-      },
-    },
-  })
-  const lastMonthIssuesPercentageFormat = Math.round((issueCount / lastMonthCount) * 100) / 100
 
   const openIssueCount = await prisma.issue.count({
     where: {
       status: 'OPEN',
     },
   })
-  const lastMonthOpenIssuePercentageFormat = Math.round((lastMonthOpenIssueCount / lastMonthCount) * 100) / 100
 
   const closedIssueCount = await prisma.issue.count({
     where: {
       status: 'CLOSED',
-    },
-  })
-
-  const totalIssuesClosedLastHour = await prisma.issue.count({
-    where: {
-      status: 'CLOSED',
-      updatedAt: {
-        gte: new Date(new Date().setHours(new Date().getHours() - 1)),
-      },
     },
   })
 
@@ -202,7 +175,6 @@ export default async function Dashboard() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">+{issueCount}</div>
-                <p className="text-xs text-muted-foreground">+{lastMonthIssuesPercentageFormat}% from last month</p>
               </CardContent>
             </Card>
             <Card>
@@ -228,7 +200,6 @@ export default async function Dashboard() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">+{openIssueCount}</div>
-                <p className="text-xs text-muted-foreground">+{lastMonthOpenIssuePercentageFormat}% from last month</p>
               </CardContent>
             </Card>
             <Card>
@@ -254,7 +225,6 @@ export default async function Dashboard() {
               </CardHeader>
               <CardContent>
                 <div className="text-2xl font-bold">+{closedIssueCount}</div>
-                <p className="text-xs text-muted-foreground">+{totalIssuesClosedLastHour} since last hour</p>
               </CardContent>
             </Card>
           </div>
