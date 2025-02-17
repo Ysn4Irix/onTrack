@@ -20,10 +20,10 @@ ENV NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=${NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL}
 WORKDIR /app
 
 COPY . .
-RUN npm install -g bun
-RUN bun install
+RUN npm install --localion=global pnpm
+RUN pnpm install
 
-RUN bun run build
+RUN pnpm build
 EXPOSE 3000
 
-CMD ["bun", "start"]
+CMD ["pnpm", "start"]
